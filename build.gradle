@@ -3,9 +3,12 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.0'
+        classpath 'com.android.tools.build:gradle:2.0.0-alpha1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,4 +23,38 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    minSdkVersion = 21
+    targetSdkVersion = 23
+    compileSdkVersion = 23
+    buildToolsVersion = '23.0.2'
+
+    depAppCompat = 'com.android.support:appcompat-v7:23.1.1'
+    depDesignCompat = 'com.android.support:design:23.1.1'
+    depRecyclerView = 'com.android.support:recyclerview-v7:23.1.1'
+    depSupportAnnotations = 'com.android.support:support-annotations:23.1.1'
+    depDaggerCompiler = 'com.google.dagger:dagger-compiler:2.0.2'
+    depDagger = 'com.google.dagger:dagger:2.0.2'
+    depJsr250 = 'javax.annotation:jsr250-api:1.0'
+    depRxJava = 'io.reactivex:rxjava:1.0.15'
+    depRxAndroid = 'io.reactivex:rxandroid:1.0.1'
+    depSqlBrite = 'com.squareup.sqlbrite:sqlbrite:0.4.1'
+    depAutoParcelProcessor = 'com.github.frankiesardo:auto-parcel-processor:0.3'
+    depAutoParcel = 'com.github.frankiesardo:auto-parcel:0.3'
+    depTimber = 'com.jakewharton.timber:timber:4.1.0'
+
+    depJunit = 'junit:junit:4.12'
+    depMockito = 'org.mockito:mockito-all:1.10.19'
+    depPowerMockJunit = 'org.powermock:powermock-module-junit4:1.6.2'
+    depPowerMockMockito = 'org.powermock:powermock-api-mockito:1.6.2'
+    depHamcrest = 'org.hamcrest:hamcrest-all:1.3'
+
+    depRunner = 'com.android.support.test:runner:0.4.1'
+    depRules = 'com.android.support.test:rules:0.4.1'
+    depEspressoCore = 'com.android.support.test.espresso:espresso-core:2.2.1'
+    depEspressoContrib = 'com.android.support.test.espresso:espresso-contrib:2.2.1'
+    depEspressoIntents = 'com.android.support.test.espresso:espresso-intents:2.2.1'
+
 }

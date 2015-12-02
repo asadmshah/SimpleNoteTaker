@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        >
+
+        <EditText
+            android:id="@+id/create_tag_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginEnd="56dp"
+            android:textSize="18sp"
+            android:textColor="@color/black_primary_text"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:hint="@string/label_for_new_tag"
+            android:textColorHint="@color/black_hint_text"
+            android:background="@android:color/transparent"
+            tools:text="This is your title"
+            />
+
+        <ImageView
+            android:id="@+id/create_tag_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_add_white_24px"
+            android:tint="@color/grey_900"
+            android:visibility="invisible"
+            />
+
+    </FrameLayout>
+
+    <com.asadmshah.simplenotetaker.widgets.ColorsListView
+        android:id="@+id/colors_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/choose_tag_color_view_size"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/tags_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

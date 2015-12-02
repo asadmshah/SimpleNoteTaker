@@ -1,26 +1,82 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.asadmshah.simplenotetaker"
-        minSdkVersion 21
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force rootProject.ext.depSupportAnnotations
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile     rootProject.ext.depAppCompat
+    compile     rootProject.ext.depDesignCompat
+    compile     rootProject.ext.depRecyclerView
+    compile     rootProject.ext.depSupportAnnotations
+    apt         rootProject.ext.depDaggerCompiler
+    compile     rootProject.ext.depDagger
+    provided    rootProject.ext.depJsr250
+    compile     rootProject.ext.depRxJava
+    compile     rootProject.ext.depRxAndroid
+    compile     rootProject.ext.depSqlBrite
+    apt         rootProject.ext.depAutoParcelProcessor
+    compile     rootProject.ext.depAutoParcel
+    compile     rootProject.ext.depTimber
+
+    testCompile rootProject.ext.depJunit
+    testCompile rootProject.ext.depMockito
+    testCompile rootProject.ext.depHamcrest
+    testCompile rootProject.ext.depPowerMockJunit
+    testCompile rootProject.ext.depPowerMockMockito
+
+    androidTestCompile rootProject.ext.depRunner
+    androidTestCompile rootProject.ext.depRules
+    androidTestCompile rootProject.ext.depEspressoCore
+    androidTestCompile (rootProject.ext.depEspressoContrib) {
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-v4'
+    }
+    androidTestCompile rootProject.ext.depEspressoIntents
+
 }
